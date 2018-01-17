@@ -26,9 +26,10 @@ io.on('connection', (socket) => {
         createdAt: new Date().getTime()
     });
 
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log('createMessage', message);
     io.emit('newMessage',generateMsg(message.from,message.text));
+    callback('This is from the server');
   });
 
   socket.on('disconnect', () => {
